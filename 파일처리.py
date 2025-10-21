@@ -5,4 +5,5 @@ f.close()
 f = open("demo.txt", "rt", encoding="utf-8")
 result = f.read()
 print(result)
-f
+f.close() 
+
