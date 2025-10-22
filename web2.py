@@ -10,21 +10,22 @@ import re
 #파일에 저장
 f = open("clien.txt", "wt", encoding="utf-8")
 
-
+for n in range(0,10):
 #웹사이트 요청
-url = "https://www.clien.net/service/board/sold"
+    url = "https://www.clien.net/service/board/sold?&od=T31&category=0&po=" + str(n)
+    print(url)
 
-#페이지 실행 결과
-data = urllib.request.urlopen(url).read()
+    #페이지 실행 결과
+    data = urllib.request.urlopen(url).read()
 
-#검색이 용이한 객체
-soup = BeautifulSoup(data, 'html.parser')
+    #검색이 용이한 객체
+    soup = BeautifulSoup(data, 'html.parser')
 
-list = soup.find_all('span', attrs={"data-role":"list-title-text"})
-for item in list:
-    title = item.text.strip()
-    print(title)
-    f.write(title + "\n")
+    list = soup.find_all('span', attrs={"data-role":"list-title-text"})
+    for item in list:
+        title = item.text.strip()
+        print(title)
+        f.write(title + "\n")
 
 f.close()
 
